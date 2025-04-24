@@ -43,6 +43,19 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Menü açıkken kaydırmayı devre dışı bırak
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -71,9 +84,9 @@ const Header = () => {
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
           <Link href="/" className="relative z-50">
-            <div className="flex items-center font-bold text-2xl text-primary">
-            Bal & Fora
-            </div>
+            <span className="flex items-center font-bold text-2xl text-primary whitespace-nowrap">
+              Bal & Fora
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -97,65 +110,71 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="relative z-50 text-text-dark md:hidden"
+            className="relative z-50 text-text-dark md:hidden p-1"
             onClick={toggleMenu}
             aria-label={isMenuOpen ? 'Menüyü Kapat' : 'Menüyü Aç'}
           >
             {isMenuOpen ? (
-              <FiX />
+              <FiX className="h-6 w-6" />
             ) : (
-              <FiMenu />
+              <FiMenu className="h-6 w-6" />
             )}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 bg-white transition-transform duration-300 ease-in-out z-40 ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden`}
-      >
-        <div className="container mx-auto px-4 pt-24 pb-8">
-          <nav className="flex flex-col space-y-6">
-            <Link
-              href="/hakkimizda"
-              className="text-xl font-medium text-text-dark hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Hakkımızda
-            </Link>
-            <Link
-              href="/fonlarimiz"
-              className="text-xl font-medium text-text-dark hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Fonlarımız
-            </Link>
-            <Link
-              href="/yatirimci-iliskileri"
-              className="text-xl font-medium text-text-dark hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Yatırımcı İlişkileri
-            </Link>
-            {/* <Link
-              href="/blog"
-              className="text-xl font-medium text-text-dark hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Blog
-            </Link> */}
-            <Link
-              href="/iletisim"
-              className="text-xl font-medium text-text-dark hover:text-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              İletişim
-            </Link>
-          </nav>
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-white z-40 md:hidden overflow-y-auto"
+          style={{ paddingTop: '80px' }}
+        >
+          <div className="container mx-auto px-6">
+            <nav className="flex flex-col">
+              <Link
+                href="/hakkimizda"
+                className="text-xl font-medium text-text-dark hover:text-primary py-4 border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+                style={{ letterSpacing: 'normal' }}
+              >
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>Hakkımızda</span>
+              </Link>
+              <Link
+                href="/fonlarimiz"
+                className="text-xl font-medium text-text-dark hover:text-primary py-4 border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+                style={{ letterSpacing: 'normal' }}
+              >
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>Fonlarımız</span>
+              </Link>
+              <Link
+                href="/yatirimci-iliskileri"
+                className="text-xl font-medium text-text-dark hover:text-primary py-4 border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+                style={{ letterSpacing: 'normal' }}
+              >
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>Yatırımcı İlişkileri</span>
+              </Link>
+              {/* <Link
+                href="/blog"
+                className="text-xl font-medium text-text-dark hover:text-primary py-4 border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+                style={{ letterSpacing: 'normal' }}
+              >
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>Blog</span>
+              </Link> */}
+              <Link
+                href="/iletisim"
+                className="text-xl font-medium text-text-dark hover:text-primary py-4 border-b border-gray-100"
+                onClick={() => setIsMenuOpen(false)}
+                style={{ letterSpacing: 'normal' }}
+              >
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>İletişim</span>
+              </Link>
+            </nav>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };

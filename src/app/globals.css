@@ -237,6 +237,36 @@ body {
   color: #D4AF37;
 }
 
+/* Mobile Navigation */
+.mobile-nav {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #FFFFFF;
+  z-index: 40;
+  padding-top: 80px;
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 1rem;
+  font-size: 1.25rem;
+  color: #1A1A1A;
+  letter-spacing: normal;
+  text-decoration: none;
+  border-bottom: 1px solid #F2F2F2;
+  text-transform: none;
+}
+
+/* Fix for tracking issues in mobile menu */
+.tracking-normal {
+  letter-spacing: normal !important;
+}
+
 /* Line clamp utilities */
 .line-clamp-2 {
   display: -webkit-box;
@@ -252,15 +282,14 @@ body {
   overflow: hidden;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .hide-mobile {
-    display: none;
+    display: none !important;
   }
 }
 
 @media (min-width: 769px) {
   .hide-desktop {
-    display: none;
+    display: none !important;
   }
 }
