@@ -87,9 +87,9 @@ const Header = () => {
             <Link href="/yatirimci-iliskileri" className="text-text-dark hover:text-primary transition-colors duration-300">
               Yatırımcı İlişkileri
             </Link>
-            <Link href="/blog" className="text-text-dark hover:text-primary transition-colors duration-300">
+            {/* <Link href="/blog" className="text-text-dark hover:text-primary transition-colors duration-300">
               Blog
-            </Link>
+            </Link> */}
             <Link href="/iletisim" className="text-text-dark hover:text-primary transition-colors duration-300">
               İletişim
             </Link>
@@ -139,13 +139,13 @@ const Header = () => {
             >
               Yatırımcı İlişkileri
             </Link>
-            <Link
+            {/* <Link
               href="/blog"
               className="text-xl font-medium text-text-dark hover:text-primary"
               onClick={() => setIsMenuOpen(false)}
             >
               Blog
-            </Link>
+            </Link> */}
             <Link
               href="/iletisim"
               className="text-xl font-medium text-text-dark hover:text-primary"

@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bal & Fora Yatırım Finans Web Sitesi
 
-## Getting Started
+Bu proje, Bal & Fora Yatırım Finans şirketi için Next.js ve Tailwind CSS kullanılarak geliştirilmiş premium kurumsal bir web sitesidir.
 
-First, run the development server:
+## Geliştirme
+
+Geliştirme sunucusunu başlatmak için:
 
 ```bash
 npm run dev
-# or
+# veya
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) adresinden tarayıcınızda sonucu görebilirsiniz.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Proje Yapısı
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/components`: Tüm UI bileşenleri
+- `src/app`: Next.js App Router sayfaları
+- `src/data`: Statik veriler
+- `src/styles`: Global stil tanımları
+- `src/utils`: Yardımcı fonksiyonlar
+- `src/hooks`: Özel React hook'ları
+- `public`: Statik dosyalar
 
-## Learn More
+## Vercel'de Dağıtım
 
-To learn more about Next.js, take a look at the following resources:
+Projeyi Vercel'de dağıtmak için aşağıdaki adımları izleyin:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. [Vercel Dashboard](https://vercel.com/dashboard)'a giriş yapın
+2. "New Project" butonuna tıklayın
+3. GitHub, GitLab veya Bitbucket hesabınızı bağlayın ve bu projeyi seçin
+4. "Import" butonuna tıklayın
+5. Çevre değişkenlerini ayarlayın (gerekirse):
+   - Herhangi bir API anahtarı veya özel yapılandırma gerektiren değişkenler
+6. "Deploy" butonuna tıklayarak dağıtımı başlatın
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Dağıtım tamamlandığında, Vercel otomatik olarak bir URL sağlayacaktır. Özel alan adınızı Vercel'in DNS ayarlarında yapılandırabilirsiniz.
 
-## Deploy on Vercel
+### Önemli Notlar:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Üretim ortamında gerekli olan tüm çevre değişkenlerini Vercel Dashboard'da ayarlayın
+- API anahtarları gibi hassas bilgileri asla doğrudan kodunuza dahil etmeyin
+- İmaj optimizasyonu için `next/image` bileşenini kullanmaya devam edin
+- Vercel Analytics'i etkinleştirmeyi düşünün (isteğe bağlı)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Sürekli Dağıtım
+
+Vercel, GitHub'daki ana dalınıza yapılan her push'tan sonra otomatik olarak projenizi yeniden dağıtacaktır. Pull request'ler için önizleme dağıtımları da oluşturulacaktır.
+
+## Diğer Kaynaklar
+
+- [Next.js Dokümantasyonu](https://nextjs.org/docs)
+- [Tailwind CSS Dokümantasyonu](https://tailwindcss.com/docs)
+- [Vercel Dağıtım Dokümantasyonu](https://vercel.org/docs/concepts/deployments/overview)

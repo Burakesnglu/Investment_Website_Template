@@ -36,7 +36,7 @@ export default function Home() {
       
       <FaqSection {...faqData} />
       
-      <BlogSection {...blogData} />
+      {/* <BlogSection {...blogData} /> */}
     </PageLayout>
   );
 }
