@@ -4,29 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FiMenu, FiX } from 'react-icons/fi';
-
-interface MarketData {
-  symbol: string;
-  value: string;
-  change: string;
-  isUp: boolean;
-}
+import { useMarketData } from '@/hooks/useMarketData';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [marketData, setMarketData] = useState<MarketData[]>([
-    { symbol: 'USD/TRY', value: '31.92', change: '+0.24%', isUp: true },
-    { symbol: 'EUR/TRY', value: '34.65', change: '+0.18%', isUp: true },
-    { symbol: 'BIST 100', value: '9.234', change: '-0.42%', isUp: false },
-    { symbol: 'ALTIN/ONS', value: '2,348', change: '+0.76%', isUp: true },
-    { symbol: 'BITCOIN', value: '63,248', change: '+1.24%', isUp: true },
-    { symbol: 'USD/TRY', value: '31.92', change: '+0.24%', isUp: true },
-    { symbol: 'EUR/TRY', value: '34.65', change: '+0.18%', isUp: true },
-    { symbol: 'BIST 100', value: '9.234', change: '-0.42%', isUp: false },
-    { symbol: 'ALTIN/ONS', value: '2,348', change: '+0.76%', isUp: true },
-    { symbol: 'BITCOIN', value: '63,248', change: '+1.24%', isUp: true },
-  ]);
+  const { marketData, loading, error } = useMarketData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,17 +48,27 @@ const Header = () => {
       {/* Market Ticker */}
       <div className="bg-secondary text-text-light py-1.5 overflow-hidden">
         <div className="relative w-full overflow-hidden">
-          <div className="animate-marquee">
-            {marketData.map((item, index) => (
-              <div key={index} className="inline-flex items-center mx-4">
-                <span className="font-medium">{item.symbol}</span>
-                <span className="ml-2">{item.value}</span>
-                <span className={`ml-2 ${item.isUp ? 'text-green-400' : 'text-red-400'}`}>
-                  {item.change}
-                </span>
-              </div>
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex justify-center">
+              <span className="text-sm">Piyasa verileri yükleniyor...</span>
+            </div>
+          ) : error ? (
+            <div className="flex justify-center">
+              <span className="text-sm text-red-400">{error}</span>
+            </div>
+          ) : (
+            <div className="animate-marquee">
+              {marketData.map((item, index) => (
+                <div key={index} className="inline-flex items-center mx-4">
+                  <span className="font-medium">{item.symbol}</span>
+                  <span className="ml-2">{item.value}</span>
+                  <span className={`ml-2 ${item.isUp ? 'text-green-400' : 'text-red-400'}`}>
+                    {item.change}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       
