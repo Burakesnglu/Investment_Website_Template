@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { useMarketData } from '@/hooks/useMarketData';
+import MarketTicker from './MarketTicker';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { marketData, loading, error } = useMarketData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,31 +44,7 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 w-full z-50 ${isScrolled ? 'shadow-md bg-white/95 backdrop-blur-sm' : 'bg-white'} transition-all duration-300`}>
       {/* Market Ticker */}
-      <div className="bg-secondary text-text-light py-1.5 overflow-hidden">
-        <div className="relative w-full overflow-hidden">
-          {loading ? (
-            <div className="flex justify-center">
-              <span className="text-sm">Piyasa verileri yükleniyor...</span>
-            </div>
-          ) : error ? (
-            <div className="flex justify-center">
-              <span className="text-sm text-red-400">{error}</span>
-            </div>
-          ) : (
-            <div className="animate-marquee">
-              {marketData.map((item, index) => (
-                <div key={index} className="inline-flex items-center mx-4">
-                  <span className="font-medium">{item.symbol}</span>
-                  <span className="ml-2">{item.value}</span>
-                  <span className={`ml-2 ${item.isUp ? 'text-green-400' : 'text-red-400'}`}>
-                    {item.change}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+      <MarketTicker />
       
       {/* Main Navigation */}
       <div className="container mx-auto px-4">
